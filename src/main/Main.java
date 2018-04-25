@@ -1,5 +1,5 @@
 package main;
-
+//Test
 public class Main {
     public static final String gameTitle = "Snake";
     public static void main(String[] args) {
