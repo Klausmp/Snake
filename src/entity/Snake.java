@@ -19,10 +19,6 @@ public class Snake extends Entity {
     public boolean canMove(double speed) {
         double a = GameLoop.getTPS() / speed;
         for (int i = 0; i <= speed; i++) {
-            System.out.println(GameLoop.getCurrentTick() + " : " + i * a);
-            System.out.println(i);
-            System.out.println(a);
-            System.out.println(" ");
             if (GameLoop.getCurrentTick() == i*a) return true;
         }
         return false;

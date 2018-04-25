@@ -4,6 +4,7 @@ import input.Keyboard;
 import input.Mouse;
 import main.GameLoop;
 import main.Main;
+import world.World;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,7 +61,9 @@ public class GameFrame extends JFrame {
     }
 
     public static void layerOne(Graphics g) {
-        GameLoop.player.render(g);
+        for (World world : Main.getWorldList()) {
+            world.render(g);
+        }
     }
 
     public static void layerTwo(Graphics g) {

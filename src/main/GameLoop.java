@@ -1,18 +1,19 @@
 package main;
 
-        /* @author Klausmp
-         */
+        /** @author Klausmp
+         **/
 
 
-import entity.Player;
 import input.Keyboard;
 import output.GameFrame;
 import output.Renderer;
-import util.Util;
+import world.World;
+import world.WorldOne;
 
 public class GameLoop {
+
     public static Renderer renderer = new Renderer();
-    public static Player player = new Player(10, 10,0);
+
 
     public static boolean gameRunning = true;
 
@@ -38,8 +39,7 @@ public class GameLoop {
     public static void init() {
         Keyboard keyboard = new Keyboard();
         GameFrame frame = new GameFrame();
-
-
+        Main.worldList.add(new WorldOne());
     }
 
     private void gameLoop() {
@@ -95,7 +95,9 @@ public class GameLoop {
     }
 
     private void gameTick() {
-        player.update();
+        for (World world: Main.getWorldList()) {
+            world.update();
+        }
     }
 
     public void gameTicks(){
