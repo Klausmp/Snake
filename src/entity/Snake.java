@@ -10,8 +10,7 @@ public class Snake extends Entity {
     public final int POSITIONINQUEUE;
 
     public Snake(int posX, int posY, int POSITIONINQUEUE) {
-        this.posX = posX;
-        this.posY = posY;
+        super(posX, posY);
         look = Renderer.snake;
         this.POSITIONINQUEUE = POSITIONINQUEUE;
         creatBounds();
@@ -30,7 +29,6 @@ public class Snake extends Entity {
         setLastPosY(posY);
         for (World world : World.getWorldList()) {
             if (canMove(world.WORLDSPEED)) {
-                System.out.println(posX +" : " +posY);
                 for (Snake snake : world.getSnakeList()) {
                     if (snake.getPOSITIONINQUEUE() == POSITIONINQUEUE - 1) {
                         setPosX(snake.getLastPosX());
@@ -44,6 +42,7 @@ public class Snake extends Entity {
     @Override
     public void update() {
         movement();
+        setBounds();
     }
 
     public int getLastPosX() {
@@ -65,6 +64,4 @@ public class Snake extends Entity {
     public int getPOSITIONINQUEUE() {
         return POSITIONINQUEUE;
     }
-
-
 }

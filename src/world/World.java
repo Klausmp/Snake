@@ -3,6 +3,7 @@ package world;
 import entity.Food;
 import entity.Snake;
 import entity.Wall;
+import util.Util;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,7 +15,13 @@ public abstract class World {
     public static List<Food> foodList = new ArrayList<Food>();
     public static List<Wall> wallList = new ArrayList<Wall>();
 
+    public static List<World> deadWorldList = new ArrayList<World>();
+    public static List<Snake> deadSnakeList = new ArrayList<Snake>();
+    public static List<Food> deadFoodList = new ArrayList<Food>();
+    public static List<Wall> deadWwallList = new ArrayList<Wall>();
+
     public final int WORLDSPEED;
+    public static int snakeTilesToAdd = 0;
 
     public World(int WORLDSPEED) {
         this.WORLDSPEED = WORLDSPEED;
@@ -24,11 +31,38 @@ public abstract class World {
         for (Snake snake : getSnakeList()) {
             snake.update();
         }
+        addSnakeTiles();
+        clearLists();
     }
 
     public void render(Graphics g) {
+        for (Food food : getFoodList()) {
+            food.render(g);
+        }
         for (Snake snake : getSnakeList()) {
             snake.render(g);
+        }
+    }
+
+    public void clearLists(){
+        if (!getDeadFoodList().isEmpty()) {
+            getFoodList().removeAll(getDeadFoodList());
+            getDeadFoodList().clear();
+        }
+        if (!getDeadSnakeList().isEmpty()) {
+            getSnakeList().removeAll(getDeadSnakeList());
+            getDeadSnakeList().clear();
+        }
+    }
+
+    public void addSnakeTiles() {
+        if (snakeTilesToAdd > 0) {
+            for (World world : getWorldList()) {
+                for (int i = 0; i < snakeTilesToAdd; i++) {
+                    world.getSnakeList().add(new Snake(-32, -32, Util.getSnakeLenght() + 1));
+                }
+                setSnakeTilesToAdd(0);
+            }
         }
     }
 
@@ -44,7 +78,7 @@ public abstract class World {
         World.worldList = worldList;
     }
 
-    public List<Snake> getSnakeList() {
+    public static List<Snake> getSnakeList() {
         return snakeList;
     }
 
@@ -52,7 +86,7 @@ public abstract class World {
         World.snakeList = snakeList;
     }
 
-    public List<Food> getFoodList() {
+    public static List<Food> getFoodList() {
         return foodList;
     }
 
@@ -66,5 +100,45 @@ public abstract class World {
 
     public void setWallList(List<Wall> wallList) {
         World.wallList = wallList;
+    }
+
+    public int getSnakeTilesToAdd() {
+        return snakeTilesToAdd;
+    }
+
+    public void setSnakeTilesToAdd(int snakeTilesToAdd) {
+        World.snakeTilesToAdd = snakeTilesToAdd;
+    }
+
+    public static List<World> getDeadWorldList() {
+        return deadWorldList;
+    }
+
+    public static void setDeadWorldList(List<World> deadWorldList) {
+        World.deadWorldList = deadWorldList;
+    }
+
+    public static List<Snake> getDeadSnakeList() {
+        return deadSnakeList;
+    }
+
+    public static void setDeadSnakeList(List<Snake> deadSnakeList) {
+        World.deadSnakeList = deadSnakeList;
+    }
+
+    public static List<Food> getDeadFoodList() {
+        return deadFoodList;
+    }
+
+    public static void setDeadFoodList(List<Food> deadFoodList) {
+        World.deadFoodList = deadFoodList;
+    }
+
+    public static List<Wall> getDeadWwallList() {
+        return deadWwallList;
+    }
+
+    public static void setDeadWwallList(List<Wall> deadWwallList) {
+        World.deadWwallList = deadWwallList;
     }
 }

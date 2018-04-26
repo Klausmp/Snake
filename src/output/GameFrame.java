@@ -2,14 +2,10 @@ package output;
 
 import input.Keyboard;
 import input.Mouse;
-import main.GameLoop;
 import main.Main;
 import world.World;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-
 
 /**
  * @author Klausmp
@@ -18,9 +14,6 @@ public class GameFrame extends JFrame {
     public static final int WINDOWSIZEX = 341;
     public static final int WINDOWSIZEY = 256;
 
-    public static BufferedImage black;
-
-
     public static JFrame jFrame = new JFrame();
 
     public static Screen screen;
@@ -28,7 +21,7 @@ public class GameFrame extends JFrame {
     public GameFrame() {
         jFrame.setSize(WINDOWSIZEX, WINDOWSIZEY);
         jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle(Main.gameTitle);
+        jFrame.setTitle(Main.getGameTitle());
         jFrame.setResizable(false);
         jFrame.setLayout(null);
 

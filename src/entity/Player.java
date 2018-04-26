@@ -1,6 +1,7 @@
 package entity;
 
 import input.Keyboard;
+import util.Util;
 import world.World;
 
 import java.awt.event.KeyEvent;
@@ -32,7 +33,6 @@ public class Player extends Snake {
         keyboardInput();
         for (World world : World.getWorldList()) {
             if (canMove(world.getWORLDSPEED())) {
-                System.out.println(posX +" : " +posY +" player");
                 setLastPosX(posX);
                 setLastPosY(posY);
                 switch (rotation) {
@@ -53,9 +53,23 @@ public class Player extends Snake {
         }
     }
 
+    public void eat() {
+        for (World world : World.getWorldList()) {
+            if (canMove(world.getWORLDSPEED()))
+            for (Food food : world.getFoodList()) {
+                if (getBounding().intersects(food.bounding) && food.isAlive()) {
+                    food.setAlive(false);
+                    world.setSnakeTilesToAdd(world.getSnakeTilesToAdd() + 1);
+                    world.getDeadFoodList().add(food);
+                }
+            }
+        }
+    }
+
     @Override
     public void update() {
         movement();
         setBounds();
+        eat();
     }
 }

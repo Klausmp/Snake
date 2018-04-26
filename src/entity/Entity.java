@@ -12,6 +12,12 @@ public abstract class Entity {
     public int height;
     public BufferedImage look;
     public Rectangle bounding;
+    public boolean isAlive = true;
+
+    public Entity(int posX, int posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
 
     public abstract void update();
 
@@ -20,13 +26,13 @@ public abstract class Entity {
     }
 
     public void setBounds(){
-        bounding.setBounds(getPosX(), getPosY(), getWight(), getHeight());
+        bounding.setBounds(getPosX() * getWight(), getPosY() * getHeight(), getWight(), getHeight());
     }
 
     public void creatBounds(){
         setWight(look.getWidth());
         setHeight(look.getHeight());
-        bounding = new Rectangle(getPosX(), getPosY(), getWight(), getHeight());
+        bounding = new Rectangle(getPosX() * getWight(), getPosY() * getHeight(), getWight(), getHeight());
     }
 
     public int getPosX() {
@@ -75,5 +81,13 @@ public abstract class Entity {
 
     public void setBounding(Rectangle bounding) {
         this.bounding = bounding;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
     }
 }
