@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class World {
-
+    public static List<World> worldList = new ArrayList<World>();
     public static List<Snake> snakeList = new ArrayList<Snake>();
     public static List<Food> foodList = new ArrayList<Food>();
     public static List<Wall> wallList = new ArrayList<Wall>();
 
+    public final int WORLDSPEED;
 
-    public World() {
+    public World(int WORLDSPEED) {
+        this.WORLDSPEED = WORLDSPEED;
     }
 
     public void update() {
@@ -28,6 +30,18 @@ public abstract class World {
         for (Snake snake : getSnakeList()) {
             snake.render(g);
         }
+    }
+
+    public int getWORLDSPEED() {
+        return WORLDSPEED;
+    }
+
+    public static List<World> getWorldList() {
+        return worldList;
+    }
+
+    public static void setWorldList(List<World> worldList) {
+        World.worldList = worldList;
     }
 
     public List<Snake> getSnakeList() {

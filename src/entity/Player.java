@@ -1,7 +1,7 @@
 package entity;
 
 import input.Keyboard;
-import main.GameLoop;
+import world.World;
 
 import java.awt.event.KeyEvent;
 
@@ -30,22 +30,25 @@ public class Player extends Snake {
 
     public void movement() {
         keyboardInput();
-        if (canMove(12)) {
-            setLastPosX(posX);
-            setLastPosY(posY);
-            switch (rotation) {
-                case 1:
-                    posY--;
-                    break;
-                case 2:
-                    posX--;
-                    break;
-                case 3:
-                    posY++;
-                    break;
-                case 4:
-                    posX++;
-                    break;
+        for (World world : World.getWorldList()) {
+            if (canMove(world.getWORLDSPEED())) {
+                System.out.println(posX +" : " +posY +" player");
+                setLastPosX(posX);
+                setLastPosY(posY);
+                switch (rotation) {
+                    case 1:
+                        posY--;
+                        break;
+                    case 2:
+                        posX--;
+                        break;
+                    case 3:
+                        posY++;
+                        break;
+                    case 4:
+                        posX++;
+                        break;
+                }
             }
         }
     }

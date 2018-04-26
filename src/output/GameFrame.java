@@ -61,7 +61,7 @@ public class GameFrame extends JFrame {
     }
 
     public static void layerOne(Graphics g) {
-        for (World world : Main.getWorldList()) {
+        for (World world : World.getWorldList()) {
             world.render(g);
         }
     }

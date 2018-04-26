@@ -39,7 +39,7 @@ public class GameLoop {
     public static void init() {
         Keyboard keyboard = new Keyboard();
         GameFrame frame = new GameFrame();
-        Main.worldList.add(new WorldOne());
+        World.getWorldList().add(new WorldOne(5));
     }
 
     private void gameLoop() {
@@ -95,7 +95,7 @@ public class GameLoop {
     }
 
     private void gameTick() {
-        for (World world: Main.getWorldList()) {
+        for (World world: World.getWorldList()) {
             world.update();
         }
     }
