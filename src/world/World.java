@@ -44,7 +44,19 @@ public abstract class World {
         }
     }
 
-    public void clearLists(){
+    public void clearLists() {
+        for (World world : getWorldList()) {
+            for (Snake snake : world.getSnakeList()) {
+                if (!snake.isAlive){
+                    world.getDeadSnakeList().add(snake);
+                }
+            }
+            for (Food food: world.getFoodList()) {
+                if (!food.isAlive()){
+                    world.getDeadFoodList().add(food);
+                }
+            }
+        }
         if (!getDeadFoodList().isEmpty()) {
             getFoodList().removeAll(getDeadFoodList());
             getDeadFoodList().clear();
@@ -78,7 +90,7 @@ public abstract class World {
         World.worldList = worldList;
     }
 
-    public static List<Snake> getSnakeList() {
+    public List<Snake> getSnakeList() {
         return snakeList;
     }
 
