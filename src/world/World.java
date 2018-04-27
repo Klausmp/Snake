@@ -3,6 +3,7 @@ package world;
 import entity.Food;
 import entity.Snake;
 import entity.Wall;
+import output.GameFrame;
 import util.Util;
 
 import java.awt.*;
@@ -20,11 +21,17 @@ public abstract class World {
     public static List<Food> deadFoodList = new ArrayList<Food>();
     public static List<Wall> deadWwallList = new ArrayList<Wall>();
 
+    public int worldSizeX;
+    public int worldSizeY;
+
     public final int WORLDSPEED;
     public static int snakeTilesToAdd = 0;
 
-    public World(int WORLDSPEED) {
+    public World(int worldSizeX, int worldSizeY, int WORLDSPEED) {
         this.WORLDSPEED = WORLDSPEED;
+        this.worldSizeX = worldSizeX;
+        this.worldSizeY = worldSizeY;
+        GameFrame.resizeWindow(worldSizeX * 16, worldSizeY * 16);
     }
 
     public void update() {
@@ -47,12 +54,12 @@ public abstract class World {
     public void clearLists() {
         for (World world : getWorldList()) {
             for (Snake snake : world.getSnakeList()) {
-                if (!snake.isAlive){
+                if (!snake.isAlive) {
                     world.getDeadSnakeList().add(snake);
                 }
             }
-            for (Food food: world.getFoodList()) {
-                if (!food.isAlive()){
+            for (Food food : world.getFoodList()) {
+                if (!food.isAlive()) {
                     world.getDeadFoodList().add(food);
                 }
             }
@@ -152,5 +159,21 @@ public abstract class World {
 
     public static void setDeadWwallList(List<Wall> deadWwallList) {
         World.deadWwallList = deadWwallList;
+    }
+
+    public int getWorldSizeX() {
+        return worldSizeX;
+    }
+
+    public void setWorldSizeX(int worldSizeX) {
+        this.worldSizeX = worldSizeX;
+    }
+
+    public int getWorldSizeY() {
+        return worldSizeY;
+    }
+
+    public void setWorldSizeY(int worldSizeY) {
+        this.worldSizeY = worldSizeY;
     }
 }

@@ -15,31 +15,31 @@ public class GameLoop {
     public static Renderer renderer = new Renderer();
 
 
-    public static boolean gameRunning = true;
+    private static boolean gameRunning = true;
 
-    public static double fpsTimer;
-    public static double nsPerTick;
-    public static double nsPerRenderTick;
-    public static double then;
-    public static double now;
-    public static double unprocessed;
-    public static double unprocessedRender;
+    private static double fpsTimer;
+    private static double nsPerTick;
+    private static double nsPerRenderTick;
+    private static double then;
+    private static double now;
+    private static double unprocessed;
+    private static double unprocessedRender;
 
-    public static int fps = 0;
-    public static int tps = 0;
-    public static int currentTick = 0;
+    private static int fps = 0;
+    private static int tps = 0;
+    private static int currentTick = 0;
 
-    public static final int TPS = 60;
-    public static final int FPS = 144;
+    private static final int TPS = 60;
+    private static final int FPS = 144;
 
-    public void run() {
+    void run() {
         gameLoop();
     }
 
-    public static void init() {
+    static void init() {
         Keyboard keyboard = new Keyboard();
         GameFrame frame = new GameFrame();
-        World.getWorldList().add(new WorldOne(5));
+        World.getWorldList().add(new WorldOne(32, 32, 5));
     }
 
     private void gameLoop() {

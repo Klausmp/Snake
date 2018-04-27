@@ -29,6 +29,7 @@ public class Player extends Snake {
         }
     }
 
+
     public void movement() {
         keyboardInput();
         for (World world : World.getWorldList()) {
@@ -67,11 +68,9 @@ public class Player extends Snake {
 
     public void tailHit() {
         for (World world : World.getWorldList()) {
-            if (canMove(world.WORLDSPEED)) {
-                for (Snake snake : world.getSnakeList()) {
-                    if (snake.getBounding().intersects(getBounding()) && snake.getPOSITIONINQUEUE() != 0) {
-                        setAlive(false);
-                    }
+            for (Snake snake : world.getSnakeList()) {
+                if (snake.getBounding().intersects(getBounding()) && snake.getPOSITIONINQUEUE() != 0 && canMove(world.WORLDSPEED)) {
+                    setAlive(false);
                 }
             }
         }

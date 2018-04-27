@@ -8,7 +8,6 @@ public class Food extends Entity {
         super(posX, posY);
         look = Renderer.food;
         creatBounds();
-        System.out.println(getBounding());
     }
 
     @Override

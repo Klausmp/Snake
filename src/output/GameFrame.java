@@ -11,28 +11,29 @@ import java.awt.*;
  * @author Klausmp
  */
 public class GameFrame extends JFrame {
-    public static final int WINDOWSIZEX = 341;
-    public static final int WINDOWSIZEY = 256;
+    public static int windowSizeX = 341;
+    public static int windowSizeY = 256;
 
-    public static JFrame jFrame = new JFrame();
+    public static JFrame gameFrame = new JFrame();
 
     public static Screen screen;
 
     public GameFrame() {
-        jFrame.setSize(WINDOWSIZEX, WINDOWSIZEY);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setTitle(Main.getGameTitle());
-        jFrame.setResizable(false);
-        jFrame.setLayout(null);
+        getGameFrame().setSize(windowSizeX, windowSizeY);
+        getGameFrame().setLocationRelativeTo(null);
+        getGameFrame().setTitle(Main.getGameTitle());
+        getGameFrame().setResizable(false);
+        getGameFrame().setLayout(null);
 
+        getGameFrame().addMouseListener(new Mouse());
+        getGameFrame().addKeyListener(new Keyboard());
         screen = new Screen();
-        screen.setBounds(0, 0, WINDOWSIZEX, WINDOWSIZEY);
-        jFrame.addMouseListener(new Mouse());
-        jFrame.addKeyListener(new Keyboard());
-        jFrame.add(screen);
+        getScreen().setBounds(0, 0, windowSizeX, windowSizeY);
+        getGameFrame().add(screen);
 
-        jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jFrame.setVisible(true);
+        getGameFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        getGameFrame().setVisible(true);
+
     }
 
     class Screen extends JLabel {
@@ -84,7 +85,44 @@ public class GameFrame extends JFrame {
     }
 
     public static void repaintScreen() {
-        screen.repaint(0, 0, WINDOWSIZEX, WINDOWSIZEY);
+        screen.repaint(0, 0, windowSizeX, windowSizeY);
     }
 
+    public static void resizeWindow(int wight, int height){
+        getScreen().setBounds(0, 0, wight, height);
+        getGameFrame().setSize(wight, height);
+
+    }
+
+    public static int getWindowSizeX() {
+        return windowSizeX;
+    }
+
+    public static void setWindowSizeX(int windowSizeX) {
+        GameFrame.windowSizeX = windowSizeX;
+    }
+
+    public static int getWindowSizeY() {
+        return windowSizeY;
+    }
+
+    public static void setWindowSizeY(int windowSizeY) {
+        GameFrame.windowSizeY = windowSizeY;
+    }
+
+    public static JFrame getGameFrame() {
+        return gameFrame;
+    }
+
+    public static void setGameFrame(JFrame gameFrame) {
+        GameFrame.gameFrame = gameFrame;
+    }
+
+    public static Screen getScreen() {
+        return screen;
+    }
+
+    public static void setScreen(Screen screen) {
+        GameFrame.screen = screen;
+    }
 }
