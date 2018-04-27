@@ -31,7 +31,7 @@ public abstract class World {
         this.WORLDSPEED = WORLDSPEED;
         this.worldSizeX = worldSizeX;
         this.worldSizeY = worldSizeY;
-        GameFrame.resizeWindow(worldSizeX * 16, worldSizeY * 16);
+        GameFrame.resizeWindow(this.getWorldSizeX() * 16, this.getWorldSizeY() * 16);
     }
 
     public void update() {

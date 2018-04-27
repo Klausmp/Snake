@@ -28,7 +28,7 @@ public class GameFrame extends JFrame {
         getGameFrame().addMouseListener(new Mouse());
         getGameFrame().addKeyListener(new Keyboard());
         screen = new Screen();
-        getScreen().setBounds(0, 0, windowSizeX, windowSizeY);
+        getScreen().setBounds(0, 0, 1920, 1080);
         getGameFrame().add(screen);
 
         getGameFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -91,7 +91,8 @@ public class GameFrame extends JFrame {
     public static void resizeWindow(int wight, int height){
         getScreen().setBounds(0, 0, wight, height);
         getGameFrame().setSize(wight, height);
-
+        setWindowSizeX(wight);
+        setWindowSizeY(height);
     }
 
     public static int getWindowSizeX() {
