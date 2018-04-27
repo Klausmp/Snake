@@ -40,11 +40,13 @@ public abstract class World {
         }
         addSnakeTiles();
         clearLists();
+        addNewFood();
     }
 
     public void render(Graphics g) {
         for (Food food : getFoodList()) {
             food.render(g);
+            System.out.println(food.getPosX() +" : " +food.getPosY());
         }
         for (Snake snake : getSnakeList()) {
             snake.render(g);
@@ -82,6 +84,12 @@ public abstract class World {
                 }
                 setSnakeTilesToAdd(0);
             }
+        }
+    }
+
+    public void addNewFood(){
+        if (getFoodList().isEmpty()){
+            getFoodList().add(new Food((int)(Math.random() * getWorldSizeX()) - 2, (int)(Math.random() * getWorldSizeY()) - 2));
         }
     }
 
