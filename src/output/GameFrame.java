@@ -89,6 +89,8 @@ public class GameFrame extends JFrame {
     }
 
     public static void resizeWindow(int wight, int height){
+        wight = (wight + 2) * 16 - 10;
+        height = (height + 2) * 16 + 12;
         getScreen().setBounds(0, 0, wight, height);
         getGameFrame().setSize(wight, height);
         setWindowSizeX(wight);

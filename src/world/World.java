@@ -31,7 +31,15 @@ public abstract class World {
         this.WORLDSPEED = WORLDSPEED;
         this.worldSizeX = worldSizeX;
         this.worldSizeY = worldSizeY;
-        GameFrame.resizeWindow(this.getWorldSizeX() * 16, this.getWorldSizeY() * 16);
+        GameFrame.resizeWindow(this.getWorldSizeX(), this.getWorldSizeY());
+        for (int x = 0; x < getWorldSizeX() + 1; x++) {
+            getWallList().add(new Wall(x, 0));
+            getWallList().add(new Wall(x, getWorldSizeY()));
+        }
+        for (int y = 0; y < getWorldSizeY(); y++) {
+            getWallList().add(new Wall(0, y));
+            getWallList().add(new Wall(getWorldSizeX(), y));
+        }
     }
 
     public void update() {
@@ -41,12 +49,16 @@ public abstract class World {
         addSnakeTiles();
         clearLists();
         addNewFood();
+        getFoodList().add(new Food((int) (Math.random() * (getWorldSizeX()) - 2) + 2, (int) (Math.random() * (getWorldSizeY()) - 2) + 2));
+
     }
 
     public void render(Graphics g) {
+        for (Wall wall : getWallList()) {
+            wall.render(g);
+        }
         for (Food food : getFoodList()) {
             food.render(g);
-            System.out.println(food.getPosX() +" : " +food.getPosY());
         }
         for (Snake snake : getSnakeList()) {
             snake.render(g);
@@ -87,9 +99,9 @@ public abstract class World {
         }
     }
 
-    public void addNewFood(){
-        if (getFoodList().isEmpty()){
-            getFoodList().add(new Food((int)(Math.random() * getWorldSizeX()) - 2, (int)(Math.random() * getWorldSizeY()) - 2));
+    public void addNewFood() {
+        if (getFoodList().isEmpty()) {
+            getFoodList().add(new Food((int) (Math.random() * (getWorldSizeX()) - 2) + 1, (int) (Math.random() * (getWorldSizeY()) - 2) + 1));
         }
     }
 

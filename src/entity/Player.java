@@ -76,11 +76,23 @@ public class Player extends Snake {
         }
     }
 
+    public void hitWall() {
+        for (World world : World.worldList) {
+            for (Wall wall : world.getWallList()) {
+                if (wall.getBounding().intersects(getBounding()) && canMove(world.WORLDSPEED)) {
+                    setAlive(false);
+                }
+            }
+        }
+    }
+
     @Override
     public void update() {
         movement();
         setBounds();
         eat();
         tailHit();
+        hitWall();
+        System.out.println(getPosX() +" : " +getPosY());
     }
 }
