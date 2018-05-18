@@ -93,6 +93,5 @@ public class Player extends Snake {
         eat();
         tailHit();
         hitWall();
-        System.out.println(getPosX() +" : " +getPosY());
     }
 }

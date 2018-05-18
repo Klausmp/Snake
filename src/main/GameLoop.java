@@ -3,17 +3,14 @@ package main;
         /** @author Klausmp
          **/
 
-
 import input.Keyboard;
 import output.GameFrame;
 import output.Renderer;
 import world.World;
-import world.WorldOne;
 
 public class GameLoop {
 
     public static Renderer renderer = new Renderer();
-
 
     private static boolean gameRunning = true;
 
@@ -37,9 +34,8 @@ public class GameLoop {
     }
 
     static void init() {
-        Keyboard keyboard = new Keyboard();
         GameFrame frame = new GameFrame();
-        World.getWorldList().add(new WorldOne(32, 32, 5));
+        Keyboard keyboard = new Keyboard();
     }
 
     private void gameLoop() {

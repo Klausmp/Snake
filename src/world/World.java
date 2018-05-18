@@ -49,8 +49,6 @@ public abstract class World {
         addSnakeTiles();
         clearLists();
         addNewFood();
-        getFoodList().add(new Food((int) (Math.random() * (getWorldSizeX()) - 2) + 2, (int) (Math.random() * (getWorldSizeY()) - 2) + 2));
-
     }
 
     public void render(Graphics g) {
@@ -100,10 +98,25 @@ public abstract class World {
     }
 
     public void addNewFood() {
+        int x, y;
+        boolean canBecratet;
         if (getFoodList().isEmpty()) {
-            getFoodList().add(new Food((int) (Math.random() * (getWorldSizeX()) - 2) + 1, (int) (Math.random() * (getWorldSizeY()) - 2) + 1));
+            do {
+                canBecratet = true;
+                x = (int) (Math.random() * (getWorldSizeX()) - 2) + 2;
+                y = (int) (Math.random() * (getWorldSizeY()) - 2) + 2;
+                for (World word : World.getWorldList()) {
+                    for (Snake snake : word.getSnakeList()) {
+                        if (snake.getPosX() == x && snake.getPosY() == y) {
+                            canBecratet = false;
+                        }
+                    }
+                }
+            } while (!canBecratet);
+            getFoodList().add(new Food(x, y));
         }
     }
+
 
     public int getWORLDSPEED() {
         return WORLDSPEED;
