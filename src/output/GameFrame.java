@@ -130,7 +130,10 @@ public class GameFrame extends JFrame {
             height = (height + 2) * 16 + 12;
         }
         if (Util.getScreenSize().getWidth() == 1920 && Util.getScreenSize().getHeight() == 1080) {
-
+            wight = (wight + 2) * 16;
+            height = (height + 2) * 16 + 23;
+        }
+        if (Util.getScreenSize().getWidth() == 1280 && Util.getScreenSize().getHeight() == 720) {
             wight = (wight + 2) * 16;
             height = (height + 2) * 16 + 23;
         }
