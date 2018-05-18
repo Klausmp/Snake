@@ -3,6 +3,7 @@ package output;
 import input.Keyboard;
 import input.Mouse;
 import main.Main;
+import util.Util;
 import world.World;
 import world.WorldOne;
 
@@ -28,6 +29,7 @@ public class GameFrame extends JFrame {
     public static JLabel gameTitel = new JLabel("Snake Main Menue");
 
     public static Screen screen;
+
 
     public GameFrame() {
         screen = new Screen();
@@ -58,14 +60,14 @@ public class GameFrame extends JFrame {
             getMainMenuePanel().setVisible(false);
         });
 
-        getCreateNewGame().addActionListener(actionEvent ->{
+        getCreateNewGame().addActionListener(actionEvent -> {
             getGameFrame().add(screen, BorderLayout.CENTER);
             getScreen().setVisible(true);
             getNewGamePanel().setVisible(false);
             getGameFrame().remove(gameTitel);
             getGameTitel().setVisible(false);
             screen.requestFocus();
-            World.worldList.add(new WorldOne(8, 8, 1));
+            World.worldList.add(new WorldOne(16, 16, 5));
         });
 
     }
@@ -123,8 +125,15 @@ public class GameFrame extends JFrame {
     }
 
     public static void resizeWindow(int wight, int height) {
-        wight = (wight + 2) * 16 - 10;
-        height = (height + 2) * 16 + 12;
+        if (Util.getScreenSize().getWidth() == 1360 && Util.getScreenSize().getHeight() == 768) {
+            wight = (wight + 2) * 16 - 10;
+            height = (height + 2) * 16 + 12;
+        }
+        if (Util.getScreenSize().getWidth() == 1920 && Util.getScreenSize().getHeight() == 1080) {
+
+            wight = (wight + 2) * 16;
+            height = (height + 2) * 16 + 23;
+        }
         getScreen().setBounds(0, 0, wight, height);
         getGameFrame().setSize(wight, height);
         setWindowSizeX(wight);

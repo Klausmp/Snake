@@ -89,6 +89,7 @@ public class Player extends Snake {
     @Override
     public void update() {
         movement();
+        System.out.println(getPosX() +" : " +getPosY());
         setBounds();
         eat();
         tailHit();

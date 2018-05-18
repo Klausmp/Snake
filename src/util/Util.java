@@ -3,8 +3,11 @@ package util;
 import entity.Snake;
 import world.World;
 
-public class Util {
+import java.awt.*;
 
+
+public class Util {
+    public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int getSnakeLenght(){
         int lenght = -1;
         for (World world: World.worldList) {
@@ -15,5 +18,13 @@ public class Util {
             }
         }
         return lenght;
+    }
+
+    public static Dimension getScreenSize() {
+        return screenSize;
+    }
+
+    public static void setScreenSize(Dimension screenSize) {
+        Util.screenSize = screenSize;
     }
 }
