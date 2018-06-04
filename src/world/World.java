@@ -76,6 +76,10 @@ public abstract class World {
                 }
             }
         }
+        if (!getDeadWorldList().isEmpty()){
+            getDeadWorldList().removeAll(getWorldList());
+            getDeadWorldList().clear();
+        }
         if (!getDeadFoodList().isEmpty()) {
             getFoodList().removeAll(getDeadFoodList());
             getDeadFoodList().clear();
@@ -117,6 +121,11 @@ public abstract class World {
         }
     }
 
+    public static void delit(){
+        for (World wolrd: getWorldList()) {
+            getDeadWorldList().add(wolrd);
+        }
+    }
 
     public int getWORLDSPEED() {
         return WORLDSPEED;

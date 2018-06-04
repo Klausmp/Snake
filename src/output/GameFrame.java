@@ -21,11 +21,8 @@ public class GameFrame extends JFrame {
 
     public static JPanel gamePannel = new JPanel(new BorderLayout());
     public static JPanel mainMenuePanel = new JPanel(new BorderLayout());
-    public static JPanel newGamePanel = new JPanel(new BorderLayout());
 
     public static JButton newGameButton = new JButton("New Game");
-    public static JButton createNewGameButton = new JButton("Create New Game");
-    public static JButton backToTheMenueButton = new JButton("Back to the Menue");
 
     public static JLabel gameTitel = new JLabel("Snake Main Menue");
 
@@ -53,21 +50,13 @@ public class GameFrame extends JFrame {
         getMainMenuePanel().add(newGameButton, BorderLayout.WEST);
         getGameFrame().add(gameTitel, BorderLayout.NORTH);
 
-        getNewGamePanel().add(createNewGameButton, BorderLayout.CENTER);
-
         newGameButton.addActionListener(actionEvent -> {
-            getGameFrame().add(newGamePanel, BorderLayout.SOUTH);
-            getNewGamePanel().setVisible(true);
-            getMainMenuePanel().setVisible(false);
-        });
-
-        getCreateNewGameButton().addActionListener(actionEvent -> {
             getGameFrame().add(getScreen(), BorderLayout.CENTER);
             getScreen().setVisible(true);
-            getNewGamePanel().setVisible(false);
             getGameFrame().remove(getGameTitel());
             getGameTitel().setVisible(false);
             screen.requestFocus();
+            getMainMenuePanel().setVisible(false);
             World.worldList.add(new WorldOne(16, 16, 5));
         });
 
@@ -144,19 +133,6 @@ public class GameFrame extends JFrame {
         setWindowSizeY(height);
     }
 
-    public static void backToTheMenue() {
-        getGamePannel().add(getBackToTheMenueButton(), BorderLayout.CENTER);
-        getBackToTheMenueButton().setVisible(true);
-    }
-
-    public static JButton getBackToTheMenueButton() {
-        return backToTheMenueButton;
-    }
-
-    public static void setBackToTheMenueButton(JButton backToTheMenueButton) {
-        GameFrame.backToTheMenueButton = backToTheMenueButton;
-    }
-
     public static int getWindowSizeX() {
         return windowSizeX;
     }
@@ -205,28 +181,12 @@ public class GameFrame extends JFrame {
         GameFrame.mainMenuePanel = mainMenuePanel;
     }
 
-    public static JButton getCreateNewGameButton() {
-        return createNewGameButton;
-    }
-
-    public static void setCreateNewGameButton(JButton createNewGameButton) {
-        GameFrame.createNewGameButton = createNewGameButton;
-    }
-
-    public static void setNewGamePanel(JPanel newGamePanel) {
-        GameFrame.newGamePanel = newGamePanel;
-    }
-
     public static JButton getNewGameButton() {
         return newGameButton;
     }
 
     public static void setNewGameButton(JButton newGameButton) {
         GameFrame.newGameButton = newGameButton;
-    }
-
-    public static JPanel getNewGamePanel() {
-        return newGamePanel;
     }
 
     public static JLabel getGameTitel() {
