@@ -1,6 +1,7 @@
 package entity;
 
 import input.Keyboard;
+import output.GameFrame;
 import util.Util;
 import world.World;
 
@@ -81,6 +82,7 @@ public class Player extends Snake {
             for (Wall wall : world.getWallList()) {
                 if (wall.getBounding().intersects(getBounding()) && canMove(world.WORLDSPEED)) {
                     setAlive(false);
+                    GameFrame.backToTheMenue();
                 }
             }
         }
