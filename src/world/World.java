@@ -3,7 +3,7 @@ package world;
 import entity.Food;
 import entity.Snake;
 import entity.Wall;
-import main.GameLoop;
+import main.Main;
 import output.GameFrame;
 import util.Util;
 
@@ -28,10 +28,13 @@ public abstract class World {
     public final int WORLDSPEED;
     public static int snakeTilesToAdd = 0;
 
+    public static int score = 0;
+
     public World(int worldSizeX, int worldSizeY, int WORLDSPEED) {
+        setScore(0);
         this.WORLDSPEED = WORLDSPEED;
-        this.worldSizeX = worldSizeX;
-        this.worldSizeY = worldSizeY;
+        this.setWorldSizeX(worldSizeX);
+        this.setWorldSizeY(worldSizeY);
         GameFrame.resizeWindow(this.getWorldSizeX(), this.getWorldSizeY());
         for (int x = 0; x < getWorldSizeX() + 1; x++) {
             getWallList().add(new Wall(x, 0));
@@ -49,6 +52,10 @@ public abstract class World {
         }
         addSnakeTiles();
         addNewFood();
+        if (Main.getHighScore() < getScore()){
+            Main.setHighScore(getScore());
+
+        }
     }
 
     public void render(Graphics g) {
@@ -61,6 +68,16 @@ public abstract class World {
         for (Snake snake : getSnakeList()) {
             snake.render(g);
         }
+        g.setColor(Color.WHITE);
+        g.drawString("Score: " + getScore(), 0, 12);
+    }
+
+    public static int getScore() {
+        return score;
+    }
+
+    public static void setScore(int score) {
+        World.score = score;
     }
 
     public void addSnakeTiles() {
@@ -78,6 +95,7 @@ public abstract class World {
         int x, y;
         boolean canBecratet;
         if (getFoodList().isEmpty()) {
+            score += 5;
             do {
                 canBecratet = true;
                 x = (int) (Math.random() * (getWorldSizeX()) - 2) + 2;

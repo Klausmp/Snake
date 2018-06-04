@@ -21,10 +21,12 @@ public class GameFrame extends JFrame {
 
     public static JPanel gamePannel = new JPanel(new BorderLayout());
     public static JPanel mainMenuePanel = new JPanel(new BorderLayout());
+    public static JPanel topBar = new JPanel(new BorderLayout());
 
     public static JButton newGameButton = new JButton("New Game");
 
-    public static JLabel gameTitel = new JLabel("Snake Main Menü");
+    public static JLabel menuTitle = new JLabel("Snake Main Menü");
+    public static JLabel highScore = new JLabel("Highscore: 0");
 
     public static Screen screen;
 
@@ -42,18 +44,22 @@ public class GameFrame extends JFrame {
         getScreen().setBounds(0, 0, 1920, 1080);
         getGamePannel().add(getScreen(), BorderLayout.CENTER);
         getScreen().setVisible(true);
+        getHighScore().setVisible(true);
+        getTopBar().add(getHighScore(), BorderLayout.EAST);
 
         getGameFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getGameFrame().setVisible(true);
         getGameFrame().add(mainMenuePanel, BorderLayout.CENTER);
 
+        getTopBar().add(getMenuTitle(), BorderLayout.CENTER);
         getMainMenuePanel().add(newGameButton, BorderLayout.WEST);
-        getGameFrame().add(gameTitel, BorderLayout.NORTH);
+        getGameFrame().add(getTopBar(), BorderLayout.NORTH);
+
 
         newGameButton.addActionListener(actionEvent -> {
             getGameFrame().add(getScreen(), BorderLayout.CENTER);
             getScreen().setVisible(true);
-            getGameTitel().setVisible(false);
+            getTopBar().setVisible(false);
             screen.requestFocus();
             getMainMenuePanel().setVisible(false);
             World.worldList.add(new WorldOne(16, 16, 5));
@@ -109,8 +115,18 @@ public class GameFrame extends JFrame {
     public static void openMainMenue(){
         resizeWindow(20, 14);
         getScreen().setVisible(false);
-        getGameTitel().setVisible(true);
+        getMenuTitle().setVisible(true);
         getMainMenuePanel().setVisible(true);
+        getTopBar().setVisible(true);
+        getHighScore().setText("Highscore: " +Main.getHighScore());
+    }
+
+    public static JLabel getHighScore() {
+        return highScore;
+    }
+
+    public static void setHighScore(JLabel highScore) {
+        GameFrame.highScore = highScore;
     }
 
     public static int getWindowSizeX() {
@@ -169,11 +185,19 @@ public class GameFrame extends JFrame {
         GameFrame.newGameButton = newGameButton;
     }
 
-    public static JLabel getGameTitel() {
-        return gameTitel;
+    public static JLabel getMenuTitle() {
+        return menuTitle;
     }
 
-    public static void setGameTitel(JLabel gameTitel) {
-        GameFrame.gameTitel = gameTitel;
+    public static void setMenuTitle(JLabel menuTitle) {
+        GameFrame.menuTitle = menuTitle;
+    }
+
+    public static JPanel getTopBar() {
+        return topBar;
+    }
+
+    public static void setTopBar(JPanel topBar) {
+        GameFrame.topBar = topBar;
     }
 }
