@@ -1,5 +1,6 @@
 package util;
 
+import entity.Food;
 import entity.Snake;
 import world.World;
 
@@ -26,5 +27,32 @@ public class Util {
 
     public static void setScreenSize(Dimension screenSize) {
         Util.screenSize = screenSize;
+    }
+
+    public static void clearLists() {
+        for (World world : World.getWorldList()) {
+            for (Snake snake : world.getSnakeList()) {
+                if (!snake.isAlive) {
+                    world.getDeadSnakeList().add(snake);
+                }
+            }
+            for (Food food : world.getFoodList()) {
+                if (!food.isAlive()) {
+                    world.getDeadFoodList().add(food);
+                }
+            }
+        }
+        if (!World.getDeadFoodList().isEmpty()) {
+            World.getFoodList().removeAll(World.getDeadFoodList());
+            World.getDeadFoodList().clear();
+        }
+        if (!World.getDeadSnakeList().isEmpty()) {
+            World.getSnakeList().removeAll(World.getDeadSnakeList());
+            World.getDeadSnakeList().clear();
+        }
+        if (!World.getDeadWorldList().isEmpty()) {
+            World.getWorldList().removeAll(World.getWorldList());
+            World.getDeadWorldList().clear();
+        }
     }
 }

@@ -3,6 +3,7 @@ package world;
 import entity.Food;
 import entity.Snake;
 import entity.Wall;
+import main.GameLoop;
 import output.GameFrame;
 import util.Util;
 
@@ -47,7 +48,6 @@ public abstract class World {
             snake.update();
         }
         addSnakeTiles();
-        clearLists();
         addNewFood();
     }
 
@@ -60,33 +60,6 @@ public abstract class World {
         }
         for (Snake snake : getSnakeList()) {
             snake.render(g);
-        }
-    }
-
-    public void clearLists() {
-        for (World world : getWorldList()) {
-            for (Snake snake : world.getSnakeList()) {
-                if (!snake.isAlive) {
-                    world.getDeadSnakeList().add(snake);
-                }
-            }
-            for (Food food : world.getFoodList()) {
-                if (!food.isAlive()) {
-                    world.getDeadFoodList().add(food);
-                }
-            }
-        }
-        if (!getDeadWorldList().isEmpty()){
-            getDeadWorldList().removeAll(getWorldList());
-            getDeadWorldList().clear();
-        }
-        if (!getDeadFoodList().isEmpty()) {
-            getFoodList().removeAll(getDeadFoodList());
-            getDeadFoodList().clear();
-        }
-        if (!getDeadSnakeList().isEmpty()) {
-            getSnakeList().removeAll(getDeadSnakeList());
-            getDeadSnakeList().clear();
         }
     }
 
@@ -121,10 +94,17 @@ public abstract class World {
         }
     }
 
-    public static void delit(){
-        for (World wolrd: getWorldList()) {
-            getDeadWorldList().add(wolrd);
+    public static void delit() {
+        for (World world : getWorldList()) {
+            getDeadWorldList().add(world);
+            for (Food food : world.getFoodList()) {
+                world.deadFoodList.add(food);
+            }
+            for (Snake snake : world.snakeList) {
+                world.deadSnakeList.add(snake);
+            }
         }
+        GameFrame.openMainMenue();
     }
 
     public int getWORLDSPEED() {
@@ -139,7 +119,7 @@ public abstract class World {
         World.worldList = worldList;
     }
 
-    public List<Snake> getSnakeList() {
+    public static List<Snake> getSnakeList() {
         return snakeList;
     }
 

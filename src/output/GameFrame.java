@@ -24,14 +24,14 @@ public class GameFrame extends JFrame {
 
     public static JButton newGameButton = new JButton("New Game");
 
-    public static JLabel gameTitel = new JLabel("Snake Main Menue");
+    public static JLabel gameTitel = new JLabel("Snake Main Menü");
 
     public static Screen screen;
 
 
     public GameFrame() {
         screen = new Screen();
-        getGameFrame().setSize(windowSizeX, windowSizeY);
+        resizeWindow(20,14);
         getGameFrame().setLocationRelativeTo(null);
         getGameFrame().setTitle(Main.getGameTitle());
         getGameFrame().setResizable(false);
@@ -53,7 +53,6 @@ public class GameFrame extends JFrame {
         newGameButton.addActionListener(actionEvent -> {
             getGameFrame().add(getScreen(), BorderLayout.CENTER);
             getScreen().setVisible(true);
-            getGameFrame().remove(getGameTitel());
             getGameTitel().setVisible(false);
             screen.requestFocus();
             getMainMenuePanel().setVisible(false);
@@ -66,14 +65,12 @@ public class GameFrame extends JFrame {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             GameFrame.background(g);
-            GameFrame.layerSix(g);
-            GameFrame.layerFive(g);
-            GameFrame.layerFour(g);
-            GameFrame.layerThree(g);
-            GameFrame.layerTwo(g);
             GameFrame.layerOne(g);
             GameFrame.guiLayer(g);
         }
+    }
+
+    private static void background(Graphics g) {
     }
 
     public static void guiLayer(Graphics g) {
@@ -84,30 +81,6 @@ public class GameFrame extends JFrame {
         for (World world : World.getWorldList()) {
             world.render(g);
         }
-    }
-
-    public static void layerTwo(Graphics g) {
-
-    }
-
-    public static void layerThree(Graphics g) {
-
-    }
-
-    public static void layerFour(Graphics g) {
-
-    }
-
-    public static void layerFive(Graphics g) {
-
-    }
-
-    public static void layerSix(Graphics g) {
-
-    }
-
-    public static void background(Graphics g) {
-
     }
 
     public static void repaintScreen() {
@@ -131,6 +104,13 @@ public class GameFrame extends JFrame {
         getGameFrame().setSize(wight, height);
         setWindowSizeX(wight);
         setWindowSizeY(height);
+    }
+
+    public static void openMainMenue(){
+        resizeWindow(20, 14);
+        getScreen().setVisible(false);
+        getGameTitel().setVisible(true);
+        getMainMenuePanel().setVisible(true);
     }
 
     public static int getWindowSizeX() {

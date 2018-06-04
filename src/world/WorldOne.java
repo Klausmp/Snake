@@ -3,7 +3,6 @@ package world;
 import entity.Food;
 import entity.Player;
 import entity.Snake;
-import entity.Wall;
 
 public class WorldOne extends World {
     public WorldOne(int worldSizeX, int worldSizeY, int WORLDSPEED) {

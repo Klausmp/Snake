@@ -6,6 +6,7 @@ package main;
 import input.Keyboard;
 import output.GameFrame;
 import output.Renderer;
+import util.Util;
 import world.World;
 
 public class GameLoop {
@@ -94,6 +95,7 @@ public class GameLoop {
         for (World world: World.getWorldList()) {
             world.update();
         }
+        Util.clearLists();
     }
 
     public void gameTicks(){

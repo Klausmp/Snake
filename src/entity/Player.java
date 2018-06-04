@@ -1,8 +1,6 @@
 package entity;
 
 import input.Keyboard;
-import output.GameFrame;
-import util.Util;
 import world.World;
 
 import java.awt.event.KeyEvent;
@@ -96,5 +94,13 @@ public class Player extends Snake {
         eat();
         tailHit();
         hitWall();
+    }
+
+    public int getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
     }
 }
