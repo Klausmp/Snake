@@ -14,16 +14,16 @@ public class Player extends Snake {
     }
 
     public void keyboardInput() {
-        if (Keyboard.isKeyDown(KeyEvent.VK_W)) {
+        if (Keyboard.isKeyDown(KeyEvent.VK_W) && rotation != 3) {
             rotation = 1;
         }
-        if (Keyboard.isKeyDown(KeyEvent.VK_A)) {
+        if (Keyboard.isKeyDown(KeyEvent.VK_A) && rotation != 4) {
             rotation = 2;
         }
-        if (Keyboard.isKeyDown(KeyEvent.VK_S)) {
+        if (Keyboard.isKeyDown(KeyEvent.VK_S) && rotation != 1) {
             rotation = 3;
         }
-        if (Keyboard.isKeyDown(KeyEvent.VK_D)) {
+        if (Keyboard.isKeyDown(KeyEvent.VK_D) && rotation != 2) {
             rotation = 4;
         }
     }

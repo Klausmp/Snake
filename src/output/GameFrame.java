@@ -62,7 +62,7 @@ public class GameFrame extends JFrame {
             getTopBar().setVisible(false);
             screen.requestFocus();
             getMainMenuePanel().setVisible(false);
-            World.worldList.add(new WorldOne(16, 16, 5));
+            World.worldList.add(new WorldOne(16, 16, 10));
         });
 
     }
