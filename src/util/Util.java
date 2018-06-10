@@ -42,6 +42,10 @@ public class Util {
                 }
             }
         }
+        if (!World.getDeadWallList().isEmpty()){
+            World.getWallList().removeAll(World.getDeadWallList());
+            World.getDeadWallList().clear();
+        }
         if (!World.getDeadFoodList().isEmpty()) {
             World.getFoodList().removeAll(World.getDeadFoodList());
             World.getDeadFoodList().clear();

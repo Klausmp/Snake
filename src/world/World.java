@@ -20,7 +20,7 @@ public abstract class World {
     public static List<World> deadWorldList = new ArrayList<World>();
     public static List<Snake> deadSnakeList = new ArrayList<Snake>();
     public static List<Food> deadFoodList = new ArrayList<Food>();
-    public static List<Wall> deadWwallList = new ArrayList<Wall>();
+    public static List<Wall> deadWallList = new ArrayList<Wall>();
 
     public int worldSizeX;
     public int worldSizeY;
@@ -52,7 +52,7 @@ public abstract class World {
         }
         addSnakeTiles();
         addNewFood();
-        if (Main.getHighScore() < getScore()){
+        if (Main.getHighScore() < getScore()) {
             Main.setHighScore(getScore());
 
         }
@@ -112,14 +112,17 @@ public abstract class World {
         }
     }
 
-    public static void delit() {
+    public static void remove() {
         for (World world : getWorldList()) {
             getDeadWorldList().add(world);
             for (Food food : world.getFoodList()) {
-                world.deadFoodList.add(food);
+                world.getDeadFoodList().add(food);
             }
-            for (Snake snake : world.snakeList) {
-                world.deadSnakeList.add(snake);
+            for (Snake snake : world.getSnakeList()) {
+                world.getDeadSnakeList().add(snake);
+            }
+            for (Wall wall : world.getWallList()) {
+                world.getDeadWallList().add(wall);
             }
         }
         GameFrame.openMainMenue();
@@ -153,7 +156,7 @@ public abstract class World {
         World.foodList = foodList;
     }
 
-    public List<Wall> getWallList() {
+    public static List<Wall> getWallList() {
         return wallList;
     }
 
@@ -193,12 +196,8 @@ public abstract class World {
         World.deadFoodList = deadFoodList;
     }
 
-    public static List<Wall> getDeadWwallList() {
-        return deadWwallList;
-    }
-
-    public static void setDeadWwallList(List<Wall> deadWwallList) {
-        World.deadWwallList = deadWwallList;
+    public static void setDeadWallList(List<Wall> deadWallList) {
+        World.deadWallList = deadWallList;
     }
 
     public int getWorldSizeX() {
@@ -215,5 +214,9 @@ public abstract class World {
 
     public void setWorldSizeY(int worldSizeY) {
         this.worldSizeY = worldSizeY;
+    }
+
+    public static List<Wall> getDeadWallList() {
+        return deadWallList;
     }
 }

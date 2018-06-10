@@ -34,7 +34,7 @@ public class GameFrame extends JFrame {
 
     public static SpinnerModel spinnerModelX = new SpinnerNumberModel(16, 10, 48, 1);
     public static SpinnerModel spinnerModelY = new SpinnerNumberModel(16, 10, 48, 1);
-    public static SpinnerModel spinnerModelSpeed = new SpinnerNumberModel(5,1, 10, 1);
+    public static SpinnerModel spinnerModelSpeed = new SpinnerNumberModel(5, 1, 10, 1);
     public static JSpinner xSpinner = new JSpinner(getSpinnerModelX());
     public static JSpinner ySpinner = new JSpinner(getSpinnerModelY());
     public static JSpinner speedSpinner = new JSpinner(spinnerModelSpeed);
@@ -43,7 +43,7 @@ public class GameFrame extends JFrame {
 
     public GameFrame() {
         screen = new Screen();
-        resizeWindow(20,14);
+        resizeWindow(20, 14);
         getGameFrame().setLocationRelativeTo(null);
         getGameFrame().setTitle(Main.getGameTitle());
         getGameFrame().setResizable(false);
@@ -128,13 +128,13 @@ public class GameFrame extends JFrame {
         setWindowSizeY(height);
     }
 
-    public static void openMainMenue(){
+    public static void openMainMenue() {
         resizeWindow(20, 14);
         getScreen().setVisible(false);
         getMenuTitle().setVisible(true);
         getMainMenuePanel().setVisible(true);
         getTopBar().setVisible(true);
-        getHighScore().setText("Highscore: " +Main.getHighScore());
+        getHighScore().setText("Highscore: " + Main.getHighScore());
     }
 
     public static JLabel getHighScore() {

@@ -70,7 +70,7 @@ public class Player extends Snake {
             for (Snake snake : world.getSnakeList()) {
                 if (snake.getBounding().intersects(getBounding()) && snake.getPOSITIONINQUEUE() != 0 && canMove(world.WORLDSPEED)) {
                     setAlive(false);
-                    World.delit();
+                    World.remove();
                 }
             }
         }
@@ -81,7 +81,7 @@ public class Player extends Snake {
             for (Wall wall : world.getWallList()) {
                 if (wall.getBounding().intersects(getBounding()) && canMove(world.WORLDSPEED)) {
                     setAlive(false);
-                    World.delit();
+                    World.remove();
                 }
             }
         }
