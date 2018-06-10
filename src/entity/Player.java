@@ -30,7 +30,6 @@ public class Player extends Snake {
         if (Keyboard.isKeyDown(KeyEvent.VK_D) && rotation != 2) {
             rotation = 4;
         }
-
         if (Keyboard.isKeyDown(KeyEvent.VK_UP) && rotation != 3) {
             rotation = 1;
         }
@@ -44,7 +43,6 @@ public class Player extends Snake {
             rotation = 4;
         }
     }
-
 
     public void movement() {
         keyboardInput();
