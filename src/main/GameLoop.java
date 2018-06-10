@@ -28,7 +28,7 @@ public class GameLoop {
     private static int currentTick = 0;
 
     private static final int TPS = 60;
-    private static final int FPS = 144;
+    private static final int FPS = 60;
 
     void run() {
         gameLoop();

@@ -29,7 +29,7 @@ public class Snake extends Entity {
         setLastPosY(posY);
         for (World world : World.getWorldList()) {
             if (canMove(world.WORLDSPEED)) {
-                for (Snake snake : world.getSnakeList()) {
+                for (Snake snake : World.getSnakeList()) {
                     if (snake.getPOSITIONINQUEUE() == POSITIONINQUEUE - 1) {
                         setPosX(snake.getLastPosX());
                         setPosY(snake.getLastPosY());

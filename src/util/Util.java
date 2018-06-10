@@ -12,7 +12,7 @@ public class Util {
     public static int getSnakeLenght(){
         int lenght = -1;
         for (World world: World.worldList) {
-            for (Snake snake: world.getSnakeList()) {
+            for (Snake snake: World.getSnakeList()) {
                 if (lenght < snake.getPOSITIONINQUEUE()){
                     lenght = snake.getPOSITIONINQUEUE();
                 }
@@ -31,14 +31,14 @@ public class Util {
 
     public static void clearLists() {
         for (World world : World.getWorldList()) {
-            for (Snake snake : world.getSnakeList()) {
+            for (Snake snake : World.getSnakeList()) {
                 if (!snake.isAlive) {
-                    world.getDeadSnakeList().add(snake);
+                    World.getDeadSnakeList().add(snake);
                 }
             }
-            for (Food food : world.getFoodList()) {
+            for (Food food : World.getFoodList()) {
                 if (!food.isAlive()) {
-                    world.getDeadFoodList().add(food);
+                    World.getDeadFoodList().add(food);
                 }
             }
         }

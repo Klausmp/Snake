@@ -9,10 +9,12 @@ import world.WorldOne;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Hashtable;
 
 /**
  * @author Klausmp
  */
+@SuppressWarnings("unchecked")
 public class GameFrame extends JFrame {
     public static int windowSizeX;
     public static int windowSizeY;
@@ -34,10 +36,12 @@ public class GameFrame extends JFrame {
 
     public static SpinnerModel spinnerModelX = new SpinnerNumberModel(16, 10, 48, 1);
     public static SpinnerModel spinnerModelY = new SpinnerNumberModel(16, 10, 48, 1);
-    public static SpinnerModel spinnerModelSpeed = new SpinnerNumberModel(5, 1, 10, 1);
     public static JSpinner xSpinner = new JSpinner(getSpinnerModelX());
     public static JSpinner ySpinner = new JSpinner(getSpinnerModelY());
-    public static JSpinner speedSpinner = new JSpinner(spinnerModelSpeed);
+
+    public static JSlider speedSlider = new JSlider(1, 3, 2);
+
+    public static Hashtable speedSliderDecription = new Hashtable();
 
     public static Screen screen;
 
@@ -64,13 +68,18 @@ public class GameFrame extends JFrame {
         getTopBar().add(getMenuTitle(), BorderLayout.CENTER);
         getMainMenuePanel().add(newGameButton, BorderLayout.WEST);
         getGameFrame().add(getTopBar(), BorderLayout.NORTH);
-        getMainMenuePanel().add(optionPanel, BorderLayout.EAST);
+        getMainMenuePanel().add(optionPanel, BorderLayout.CENTER);
+        getSpeedSliderDecription().put(1, new JLabel("Slow"));
+        getSpeedSliderDecription().put(2, new JLabel("Mid"));
+        getSpeedSliderDecription().put(3, new JLabel("Fast"));
+        getSpeedSlider().setLabelTable(getSpeedSliderDecription());
+        getSpeedSlider().setPaintLabels(true);
         getOptionPanel().add(getxSpinnerLabel());
         getOptionPanel().add(getxSpinner());
         getOptionPanel().add(getySpinnerLabel());
         getOptionPanel().add(getySpinner());
         getOptionPanel().add(getSpeedLabel());
-        getOptionPanel().add(getSpeedSpinner());
+        getOptionPanel().add(getSpeedSlider());
 
         newGameButton.addActionListener(actionEvent -> {
             getGameFrame().add(getScreen(), BorderLayout.CENTER);
@@ -78,7 +87,21 @@ public class GameFrame extends JFrame {
             getTopBar().setVisible(false);
             screen.requestFocus();
             getMainMenuePanel().setVisible(false);
-            World.worldList.add(new WorldOne((int) getxSpinner().getValue(), (int) getySpinner().getValue(), (int) getSpeedSpinner().getValue()));
+            switch (getSpeedSlider().getValue()) {
+                case 1:
+                    World.worldList.add(new WorldOne((int) getxSpinner().getValue(), (int) getySpinner().getValue(), 2));
+                    break;
+                case 2:
+                    World.worldList.add(new WorldOne((int) getxSpinner().getValue(), (int) getySpinner().getValue(), 5));
+                    break;
+                case 3:
+                    World.worldList.add(new WorldOne((int) getxSpinner().getValue(), (int) getySpinner().getValue(), 10));
+                    break;
+                default:
+                    World.worldList.add(new WorldOne((int) getxSpinner().getValue(), (int) getySpinner().getValue(), 5));
+                    break;
+            }
+
         });
 
     }
@@ -273,22 +296,6 @@ public class GameFrame extends JFrame {
         GameFrame.ySpinnerLabel = ySpinnerLabel;
     }
 
-    public static SpinnerModel getSpinnerModelSpeed() {
-        return spinnerModelSpeed;
-    }
-
-    public static void setSpinnerModelSpeed(SpinnerModel spinnerModelSpeed) {
-        GameFrame.spinnerModelSpeed = spinnerModelSpeed;
-    }
-
-    public static JSpinner getSpeedSpinner() {
-        return speedSpinner;
-    }
-
-    public static void setSpeedSpinner(JSpinner speedSpinner) {
-        GameFrame.speedSpinner = speedSpinner;
-    }
-
     public static JLabel getSpeedLabel() {
         return speedLabel;
     }
@@ -297,4 +304,19 @@ public class GameFrame extends JFrame {
         GameFrame.speedLabel = speedLabel;
     }
 
+    public static JSlider getSpeedSlider() {
+        return speedSlider;
+    }
+
+    public static void setSpeedSlider(JSlider speedSlider) {
+        GameFrame.speedSlider = speedSlider;
+    }
+
+    public static Hashtable getSpeedSliderDecription() {
+        return speedSliderDecription;
+    }
+
+    public static void setSpeedSliderDecription(Hashtable speedSliderDecription) {
+        GameFrame.speedSliderDecription = speedSliderDecription;
+    }
 }

@@ -84,7 +84,7 @@ public abstract class World {
         if (snakeTilesToAdd > 0) {
             for (World world : getWorldList()) {
                 for (int i = 0; i < snakeTilesToAdd; i++) {
-                    world.getSnakeList().add(new Snake(-32, -32, Util.getSnakeLenght() + 1));
+                    getSnakeList().add(new Snake(-32, -32, Util.getSnakeLenght() + 1));
                 }
                 setSnakeTilesToAdd(0);
             }
@@ -101,7 +101,7 @@ public abstract class World {
                 x = (int) (Math.random() * (getWorldSizeX()) - 2) + 2;
                 y = (int) (Math.random() * (getWorldSizeY()) - 2) + 2;
                 for (World word : World.getWorldList()) {
-                    for (Snake snake : word.getSnakeList()) {
+                    for (Snake snake : getSnakeList()) {
                         if (snake.getPosX() == x && snake.getPosY() == y) {
                             canBecratet = false;
                         }
@@ -115,14 +115,14 @@ public abstract class World {
     public static void remove() {
         for (World world : getWorldList()) {
             getDeadWorldList().add(world);
-            for (Food food : world.getFoodList()) {
-                world.getDeadFoodList().add(food);
+            for (Food food : getFoodList()) {
+                getDeadFoodList().add(food);
             }
-            for (Snake snake : world.getSnakeList()) {
-                world.getDeadSnakeList().add(snake);
+            for (Snake snake : getSnakeList()) {
+                getDeadSnakeList().add(snake);
             }
-            for (Wall wall : world.getWallList()) {
-                world.getDeadWallList().add(wall);
+            for (Wall wall : getWallList()) {
+                getDeadWallList().add(wall);
             }
         }
         GameFrame.openMainMenue();

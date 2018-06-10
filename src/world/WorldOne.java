@@ -5,10 +5,10 @@ import entity.Player;
 import entity.Snake;
 
 public class WorldOne extends World {
-    private int rotation;
 
     public WorldOne(int worldSizeX, int worldSizeY, int WORLDSPEED) {
         super(worldSizeX, worldSizeY, WORLDSPEED);
+        int rotation;
         if (worldSizeX > worldSizeY) {
             rotation = 2;
         }

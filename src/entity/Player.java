@@ -56,7 +56,7 @@ public class Player extends Snake {
     public void eat() {
         for (World world : World.getWorldList()) {
             if (canMove(world.getWORLDSPEED()))
-                for (Food food : world.getFoodList()) {
+                for (Food food : World.getFoodList()) {
                     if (getBounding().intersects(food.bounding) && food.isAlive()) {
                         food.setAlive(false);
                         world.setSnakeTilesToAdd(world.getSnakeTilesToAdd() + 1);
@@ -67,7 +67,7 @@ public class Player extends Snake {
 
     public void tailHit() {
         for (World world : World.getWorldList()) {
-            for (Snake snake : world.getSnakeList()) {
+            for (Snake snake : World.getSnakeList()) {
                 if (snake.getBounding().intersects(getBounding()) && snake.getPOSITIONINQUEUE() != 0 && canMove(world.WORLDSPEED)) {
                     setAlive(false);
                     World.remove();
@@ -78,7 +78,7 @@ public class Player extends Snake {
 
     public void hitWall() {
         for (World world : World.worldList) {
-            for (Wall wall : world.getWallList()) {
+            for (Wall wall : World.getWallList()) {
                 if (wall.getBounding().intersects(getBounding()) && canMove(world.WORLDSPEED)) {
                     setAlive(false);
                     World.remove();
