@@ -4,8 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * Created by Marc on 27.02.2016.
+ * @author Brotcrunsher
  */
+
 public class Keyboard implements KeyListener {
     private static boolean[] keys = new boolean[512];
 

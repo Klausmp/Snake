@@ -4,8 +4,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Created by klausmp on 25.06.17.
+ * @author Klausmp
  */
+
 public class Mouse implements MouseListener {
     public static int[] mousePos = new int[]{0, 0};
 

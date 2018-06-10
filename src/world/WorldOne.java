@@ -4,6 +4,10 @@ import entity.Food;
 import entity.Player;
 import entity.Snake;
 
+/**
+ * @author Klausmp
+ */
+
 public class WorldOne extends World {
 
     public WorldOne(int worldSizeX, int worldSizeY, int WORLDSPEED) {
@@ -11,8 +15,7 @@ public class WorldOne extends World {
         int rotation;
         if (worldSizeX > worldSizeY) {
             rotation = 2;
-        }
-        else {
+        } else {
             rotation = 1;
         }
         snakeList.add(new Player(worldSizeX / 2, worldSizeY / 2, rotation));

@@ -5,6 +5,10 @@ import world.World;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * @author Klausmp
+ */
+
 public class Player extends Snake {
     public int rotation;
 
@@ -24,6 +28,19 @@ public class Player extends Snake {
             rotation = 3;
         }
         if (Keyboard.isKeyDown(KeyEvent.VK_D) && rotation != 2) {
+            rotation = 4;
+        }
+
+        if (Keyboard.isKeyDown(KeyEvent.VK_UP) && rotation != 3) {
+            rotation = 1;
+        }
+        if (Keyboard.isKeyDown(KeyEvent.VK_LEFT) && rotation != 4) {
+            rotation = 2;
+        }
+        if (Keyboard.isKeyDown(KeyEvent.VK_DOWN) && rotation != 1) {
+            rotation = 3;
+        }
+        if (Keyboard.isKeyDown(KeyEvent.VK_RIGHT) && rotation != 2) {
             rotation = 4;
         }
     }

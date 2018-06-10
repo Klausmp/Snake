@@ -14,7 +14,7 @@ import java.util.Hashtable;
 /**
  * @author Klausmp
  */
-@SuppressWarnings("unchecked")
+
 public class GameFrame extends JFrame {
     public static int windowSizeX;
     public static int windowSizeY;

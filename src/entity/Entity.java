@@ -5,6 +5,10 @@ import output.Renderer;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Klausmp
+ */
+
 public abstract class Entity {
     public int posX;
     public int posY;

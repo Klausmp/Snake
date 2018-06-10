@@ -4,6 +4,10 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * @author Klausmp
+ */
+
 public class Renderer {
 
     public static BufferedImage food;

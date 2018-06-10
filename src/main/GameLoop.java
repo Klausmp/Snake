@@ -1,13 +1,14 @@
 package main;
 
-        /** @author Klausmp
-         **/
-
 import input.Keyboard;
 import output.GameFrame;
 import output.Renderer;
 import util.Util;
 import world.World;
+
+/**
+ * @author Klausmp
+ */
 
 public class GameLoop {
 
@@ -92,15 +93,15 @@ public class GameLoop {
     }
 
     private void gameTick() {
-        for (World world: World.getWorldList()) {
+        for (World world : World.getWorldList()) {
             world.update();
         }
         Util.clearLists();
     }
 
-    public void gameTicks(){
+    public void gameTicks() {
         currentTick++;
-        if (currentTick >= TPS + 1){
+        if (currentTick >= TPS + 1) {
             currentTick = 1;
         }
     }

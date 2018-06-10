@@ -1,8 +1,13 @@
 package main;
 
+/**
+ * @author Klausmp
+ */
+
 public class Main {
     public static final String gameTitle = "Snake";
     public static int highScore = 0;
+
     public static void main(String[] args) {
         new GameLoop().init();
         new GameLoop().run();

@@ -4,6 +4,10 @@ import main.GameLoop;
 import output.Renderer;
 import world.World;
 
+/**
+ * @author Klausmp
+ */
+
 public class Snake extends Entity {
     public int lastPosX;
     public int lastPosY;

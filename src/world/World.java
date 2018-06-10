@@ -11,6 +11,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Klausmp
+ */
+
 public abstract class World {
     public static List<World> worldList = new ArrayList<World>();
     public static List<Snake> snakeList = new ArrayList<Snake>();
