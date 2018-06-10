@@ -14,22 +14,32 @@ import java.awt.*;
  * @author Klausmp
  */
 public class GameFrame extends JFrame {
-    public static int windowSizeX = 341;
-    public static int windowSizeY = 256;
+    public static int windowSizeX;
+    public static int windowSizeY;
 
     public static JFrame gameFrame = new JFrame();
 
     public static JPanel gamePannel = new JPanel(new BorderLayout());
     public static JPanel mainMenuePanel = new JPanel(new BorderLayout());
     public static JPanel topBar = new JPanel(new BorderLayout());
+    public static JPanel optionPanel = new JPanel(new GridLayout(3, 2));
 
     public static JButton newGameButton = new JButton("New Game");
 
     public static JLabel menuTitle = new JLabel("Snake Main Menü");
     public static JLabel highScore = new JLabel("Highscore: 0");
+    public static JLabel xSpinnerLabel = new JLabel("Field Width");
+    public static JLabel ySpinnerLabel = new JLabel("Field Height");
+    public static JLabel speedLabel = new JLabel("Running Speed");
+
+    public static SpinnerModel spinnerModelX = new SpinnerNumberModel(16, 10, 48, 1);
+    public static SpinnerModel spinnerModelY = new SpinnerNumberModel(16, 10, 48, 1);
+    public static SpinnerModel spinnerModelSpeed = new SpinnerNumberModel(5,1, 10, 1);
+    public static JSpinner xSpinner = new JSpinner(getSpinnerModelX());
+    public static JSpinner ySpinner = new JSpinner(getSpinnerModelY());
+    public static JSpinner speedSpinner = new JSpinner(spinnerModelSpeed);
 
     public static Screen screen;
-
 
     public GameFrame() {
         screen = new Screen();
@@ -54,7 +64,13 @@ public class GameFrame extends JFrame {
         getTopBar().add(getMenuTitle(), BorderLayout.CENTER);
         getMainMenuePanel().add(newGameButton, BorderLayout.WEST);
         getGameFrame().add(getTopBar(), BorderLayout.NORTH);
-
+        getMainMenuePanel().add(optionPanel, BorderLayout.EAST);
+        getOptionPanel().add(getxSpinnerLabel());
+        getOptionPanel().add(getxSpinner());
+        getOptionPanel().add(getySpinnerLabel());
+        getOptionPanel().add(getySpinner());
+        getOptionPanel().add(getSpeedLabel());
+        getOptionPanel().add(getSpeedSpinner());
 
         newGameButton.addActionListener(actionEvent -> {
             getGameFrame().add(getScreen(), BorderLayout.CENTER);
@@ -62,7 +78,7 @@ public class GameFrame extends JFrame {
             getTopBar().setVisible(false);
             screen.requestFocus();
             getMainMenuePanel().setVisible(false);
-            World.worldList.add(new WorldOne(24, 24, 8));
+            World.worldList.add(new WorldOne((int) getxSpinner().getValue(), (int) getySpinner().getValue(), (int) getSpeedSpinner().getValue()));
         });
 
     }
@@ -200,4 +216,85 @@ public class GameFrame extends JFrame {
     public static void setTopBar(JPanel topBar) {
         GameFrame.topBar = topBar;
     }
+
+    public static JSpinner getxSpinner() {
+        return xSpinner;
+    }
+
+    public static void setxSpinner(JSpinner xSpinner) {
+        GameFrame.xSpinner = xSpinner;
+    }
+
+    public static SpinnerModel getSpinnerModelX() {
+        return spinnerModelX;
+    }
+
+    public static void setSpinnerModelX(SpinnerModel spinnerModelX) {
+        GameFrame.spinnerModelX = spinnerModelX;
+    }
+
+    public static JPanel getOptionPanel() {
+        return optionPanel;
+    }
+
+    public static void setOptionPanel(JPanel optionPanel) {
+        GameFrame.optionPanel = optionPanel;
+    }
+
+    public static JSpinner getySpinner() {
+        return ySpinner;
+    }
+
+    public static void setySpinner(JSpinner ySpinner) {
+        GameFrame.ySpinner = ySpinner;
+    }
+
+    public static SpinnerModel getSpinnerModelY() {
+        return spinnerModelY;
+    }
+
+    public static void setSpinnerModelY(SpinnerModel spinnerModelY) {
+        GameFrame.spinnerModelY = spinnerModelY;
+    }
+
+    public static JLabel getxSpinnerLabel() {
+        return xSpinnerLabel;
+    }
+
+    public static void setxSpinnerLabel(JLabel xSpinnerLabel) {
+        GameFrame.xSpinnerLabel = xSpinnerLabel;
+    }
+
+    public static JLabel getySpinnerLabel() {
+        return ySpinnerLabel;
+    }
+
+    public static void setySpinnerLabel(JLabel ySpinnerLabel) {
+        GameFrame.ySpinnerLabel = ySpinnerLabel;
+    }
+
+    public static SpinnerModel getSpinnerModelSpeed() {
+        return spinnerModelSpeed;
+    }
+
+    public static void setSpinnerModelSpeed(SpinnerModel spinnerModelSpeed) {
+        GameFrame.spinnerModelSpeed = spinnerModelSpeed;
+    }
+
+    public static JSpinner getSpeedSpinner() {
+        return speedSpinner;
+    }
+
+    public static void setSpeedSpinner(JSpinner speedSpinner) {
+        GameFrame.speedSpinner = speedSpinner;
+    }
+
+    public static JLabel getSpeedLabel() {
+        return speedLabel;
+    }
+
+    public static void setSpeedLabel(JLabel speedLabel) {
+        GameFrame.speedLabel = speedLabel;
+    }
+
 }
