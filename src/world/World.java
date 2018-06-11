@@ -97,21 +97,21 @@ public abstract class World {
 
     public void addNewFood() {
         int x, y;
-        boolean canBecratet;
+        boolean canBeCrated;
         if (getFoodList().isEmpty()) {
             score += 5;
             do {
-                canBecratet = true;
+                canBeCrated = true;
                 x = (int) (Math.random() * (getWorldSizeX()) - 2) + 2;
                 y = (int) (Math.random() * (getWorldSizeY()) - 2) + 2;
                 for (World word : World.getWorldList()) {
                     for (Snake snake : getSnakeList()) {
                         if (snake.getPosX() == x && snake.getPosY() == y) {
-                            canBecratet = false;
+                            canBeCrated = false;
                         }
                     }
                 }
-            } while (!canBecratet);
+            } while (!canBeCrated);
             getFoodList().add(new Food(x, y));
         }
     }

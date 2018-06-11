@@ -21,18 +21,18 @@ public class GameFrame extends JFrame {
 
     public static JFrame gameFrame = new JFrame();
 
-    public static JPanel gamePannel = new JPanel(new BorderLayout());
-    public static JPanel mainMenuePanel = new JPanel(new BorderLayout());
+    public static JPanel gamePanel = new JPanel(new BorderLayout());
+    public static JPanel mainMenuPanel = new JPanel(new BorderLayout());
     public static JPanel topBar = new JPanel(new BorderLayout());
     public static JPanel optionPanel = new JPanel(new GridLayout(3, 2));
 
     public static JButton newGameButton = new JButton("New Game");
 
     public static JLabel menuTitle = new JLabel("Snake Main Menü");
-    public static JLabel highScore = new JLabel("Highscore: 0");
-    public static JLabel xSpinnerLabel = new JLabel("Field Width");
-    public static JLabel ySpinnerLabel = new JLabel("Field Height");
-    public static JLabel speedLabel = new JLabel("Running Speed");
+    public static JLabel highScore = new JLabel("High Score: 0");
+    public static JLabel xSpinnerLabel = new JLabel("Level Width");
+    public static JLabel ySpinnerLabel = new JLabel("Level Height");
+    public static JLabel speedLabel = new JLabel("Movement Speed");
 
     public static SpinnerModel spinnerModelX = new SpinnerNumberModel(16, 10, 48, 1);
     public static SpinnerModel spinnerModelY = new SpinnerNumberModel(16, 10, 48, 1);
@@ -41,7 +41,7 @@ public class GameFrame extends JFrame {
 
     public static JSlider speedSlider = new JSlider(1, 3, 2);
 
-    public static Hashtable speedSliderDecription = new Hashtable();
+    public static Hashtable<Integer, JLabel> speedSliderDecription = new Hashtable<>();
 
     public static Screen screen;
 
@@ -56,19 +56,17 @@ public class GameFrame extends JFrame {
         getGameFrame().addMouseListener(new Mouse());
         getScreen().addKeyListener(new Keyboard());
         getScreen().setBounds(0, 0, 1920, 1080);
-        getGamePannel().add(getScreen(), BorderLayout.CENTER);
+        getGamePanel().add(getScreen(), BorderLayout.CENTER);
         getScreen().setVisible(true);
         getHighScore().setVisible(true);
         getTopBar().add(getHighScore(), BorderLayout.EAST);
 
         getGameFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        getGameFrame().setVisible(true);
-        getGameFrame().add(mainMenuePanel, BorderLayout.CENTER);
+        getGameFrame().add(mainMenuPanel, BorderLayout.CENTER);
 
         getTopBar().add(getMenuTitle(), BorderLayout.CENTER);
-        getMainMenuePanel().add(newGameButton, BorderLayout.WEST);
+        getMainMenuPanel().add(newGameButton, BorderLayout.WEST);
         getGameFrame().add(getTopBar(), BorderLayout.NORTH);
-        getMainMenuePanel().add(optionPanel, BorderLayout.CENTER);
         getSpeedSliderDecription().put(1, new JLabel("Slow"));
         getSpeedSliderDecription().put(2, new JLabel("Mid"));
         getSpeedSliderDecription().put(3, new JLabel("Fast"));
@@ -80,13 +78,15 @@ public class GameFrame extends JFrame {
         getOptionPanel().add(getySpinner());
         getOptionPanel().add(getSpeedLabel());
         getOptionPanel().add(getSpeedSlider());
+        getMainMenuPanel().add(optionPanel, BorderLayout.CENTER);
+        getGameFrame().setVisible(true);
 
         newGameButton.addActionListener(actionEvent -> {
             getGameFrame().add(getScreen(), BorderLayout.CENTER);
             getScreen().setVisible(true);
             getTopBar().setVisible(false);
             screen.requestFocus();
-            getMainMenuePanel().setVisible(false);
+            getMainMenuPanel().setVisible(false);
             switch (getSpeedSlider().getValue()) {
                 case 1:
                     World.worldList.add(new WorldOne((int) getxSpinner().getValue(), (int) getySpinner().getValue(), 2));
@@ -155,7 +155,7 @@ public class GameFrame extends JFrame {
         resizeWindow(20, 14);
         getScreen().setVisible(false);
         getMenuTitle().setVisible(true);
-        getMainMenuePanel().setVisible(true);
+        getMainMenuPanel().setVisible(true);
         getTopBar().setVisible(true);
         getHighScore().setText("Highscore: " + Main.getHighScore());
     }
@@ -200,20 +200,20 @@ public class GameFrame extends JFrame {
         GameFrame.screen = screen;
     }
 
-    public static JPanel getGamePannel() {
-        return gamePannel;
+    public static JPanel getGamePanel() {
+        return gamePanel;
     }
 
-    public static void setGamePannel(JPanel gamePannel) {
-        GameFrame.gamePannel = gamePannel;
+    public static void setGamePanel(JPanel gamePanel) {
+        GameFrame.gamePanel = gamePanel;
     }
 
-    public static JPanel getMainMenuePanel() {
-        return mainMenuePanel;
+    public static JPanel getMainMenuPanel() {
+        return mainMenuPanel;
     }
 
-    public static void setMainMenuePanel(JPanel mainMenuePanel) {
-        GameFrame.mainMenuePanel = mainMenuePanel;
+    public static void setMainMenuPanel(JPanel mainMenuPanel) {
+        GameFrame.mainMenuPanel = mainMenuPanel;
     }
 
     public static JButton getNewGameButton() {
@@ -312,11 +312,11 @@ public class GameFrame extends JFrame {
         GameFrame.speedSlider = speedSlider;
     }
 
-    public static Hashtable getSpeedSliderDecription() {
+    public static Hashtable<Integer, JLabel> getSpeedSliderDecription() {
         return speedSliderDecription;
     }
 
-    public static void setSpeedSliderDecription(Hashtable speedSliderDecription) {
+    public static void setSpeedSliderDecription(Hashtable<Integer, JLabel> speedSliderDecription) {
         GameFrame.speedSliderDecription = speedSliderDecription;
     }
 }
